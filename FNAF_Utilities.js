@@ -1,6 +1,5 @@
 /*
    This extension was made with TurboBuilder!
-   thanks for this tool! ~ Night
    https://turbobuilder-steel.vercel.app/
 */
 (function(Scratch) {
@@ -502,6 +501,31 @@
     });
     Extension.prototype[`camera_get`] = (args, util) => {
         return variables['game_camera']
+    };
+
+    blocks.push({
+        opcode: `power_set`,
+        blockType: Scratch.BlockType.COMMAND,
+        text: `Set power to [power]%`,
+        arguments: {
+            "power": {
+                type: Scratch.ArgumentType.STRING,
+                defaultValue: 100,
+            },
+        }
+    });
+    Extension.prototype[`power_set`] = (args, util) => {
+        variables['game_power'] = args["power"]
+    };
+
+    blocks.push({
+        opcode: `power_get`,
+        blockType: Scratch.BlockType.REPORTER,
+        text: `Player's Power`,
+        arguments: {}
+    });
+    Extension.prototype[`power_get`] = (args, util) => {
+        return variables['game_power']
     };
 
     Scratch.extensions.register(new Extension());
