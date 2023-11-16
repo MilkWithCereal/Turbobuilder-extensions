@@ -519,6 +519,21 @@
     };
 
     blocks.push({
+        opcode: `power_change`,
+        blockType: Scratch.BlockType.COMMAND,
+        text: `change power by -[power]%`,
+        arguments: {
+            "power": {
+                type: Scratch.ArgumentType.STRING,
+                defaultValue: 1,
+            },
+        }
+    });
+    Extension.prototype[`power_change`] = (args, util) => {
+        variables['game_power'] = (variables['game_power'] - args["power"])
+    };
+
+    blocks.push({
         opcode: `power_get`,
         blockType: Scratch.BlockType.REPORTER,
         text: `Player's Power`,
